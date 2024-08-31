@@ -1,0 +1,61 @@
+$primary-color: #007BFF;
+$secondary-color: #28A745;
+$background-color: #f0f8ff;
+
+body {
+    background-color: $background-color;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.25rem;
+}
+
+.header, .footer {
+    background-color:  $primary-color;
+    color: $background-color;
+    text-align: center;
+    padding: 0.6rem 0;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+
+    .product-card {
+        background-color: $background-color;
+        border: 1px solid $primary-color;
+        padding:  0.9rem;
+        flex: 1 1 calc( 33% - 2.5rem);
+        box-sizing: border-box;
+        text-align: center;
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        h3 {
+             color: $primary-color;
+        }
+
+        p {
+            color: $secondary-color;
+        }
+        
+        button {
+            background-color:  $primary-color;
+            color: $background-color;
+            border: none;
+            padding: 0.6rem;
+            cursor: pointer;
+
+            &:hover {
+                background-color: darken($primary-color, 10%);
+            }
+        }
+    }
+}
