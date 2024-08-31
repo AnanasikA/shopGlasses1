@@ -3,5 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { removeFromCart, updateQuantity } from '../redux/actions/cartActions';
 
 const Cart = () => {
-    const cart = use
+    const cart = useSelector(state => state.cart.cart);
+    const dispatch = useDispatch();
+
+    
 }
