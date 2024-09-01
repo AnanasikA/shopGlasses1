@@ -1,26 +1,13 @@
-import React from "react";
+import React from 'react';
+import ContactForm from './ContactForm';
 
 const Contact = () => {
-    return (
-        <div>
-            <h2>Kontakt</h2>
-            <form>
-                <label>
-                    Imię:
-                    <input type="text" name="name" />
-                </label>
-                <label>
-                    Email:
-                    <input type="email" name="email" />
-                </label>
-                <label>
-                    Wiadomość:
-                    <textarea name="message"></textarea>
-                </label>
-                <button type="submit">Wyślij</button>
-            </form>
-        </div>
-    );
+  return (
+    <div className="container mx-auto p-4">
+      <h1 className="text-4xl font-bold mb-8">Skontaktuj się z nami</h1>
+      <ContactForm />
+    </div>
+  );
 };
 
 export default Contact;

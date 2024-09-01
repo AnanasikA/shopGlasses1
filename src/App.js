@@ -1,28 +1,20 @@
-// src/App.js
 import React from 'react';
-import './scss/styles.scss';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider, useDispatch, useSelector } from 'react-redux';
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
+import store from './redux/store';
 import Header from './components/Header';
-import Cart from './components/Cart';
 import ProductList from './components/ProductList';
-import Checkout from './components/Checkout';
+import Cart from './components/Cart';
 import Contact from './components/Contact';
 import About from './components/About';
-import store from './redux/store';
+import Checkout from './components/Checkout';
 import { addToCart } from './redux/actions/cartActions';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const stripePromise = loadStripe('your-publishable-key-here');
-
-const products = [
-  {id: 1, name: 'Okulary 1', price: 200, image: '/images/glasses1.jpg'},
-  {id: 2, name: 'Okulary 2', price: 300, image: '/images/okulary2.png'},
-  {id: 3, name: 'Okulary 3', price: 250, image: '/images/okulary3.png'}
-];
 
 function App() {
   const dispatch = useDispatch();
@@ -39,18 +31,18 @@ function App() {
     <Router>
       <Header />
       <Elements stripe={stripePromise}>
-        <div className='container'>
+        <div className='container mx-auto pt-20 pb-10'>
           <Routes>
-            <Route path='/' element={<ProductList products={products} addToCart={addToCartHandler} />} />
+            <Route path='/' element={<ProductList addToCart={addToCartHandler} />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/contact' element={<Contact />} />
             <Route path='/about' element={<About />} />
           </Routes>
           {cart.length > 0 && <Checkout totalAmount={totalAmount} />}
-          <footer className='footer'>
+          <footer className='footer mt-10 text-center'>
             <p>&copy; 2024 Anastasiia Kupriianets</p>
           </footer>
-          <ToastContainer /> {/* Umieść ToastContainer tutaj */}
+          <ToastContainer position='bottom-right' />
         </div>
       </Elements>
     </Router>
@@ -64,4 +56,3 @@ const WrappedApp = () => (
 );
 
 export default WrappedApp;
-
