@@ -8,7 +8,7 @@ export const fetchProducts = () => async dispatch => {
   try {
     const response = await fetch('/api/products'); 
     if (!response.ok) {
-      throw new Error('Błąd sieci');
+      throw new Error('Błąd sieci'); // Sprawdzenie statusu odpowiedzi
     }
     const data = await response.json();
     dispatch({ type: FETCH_PRODUCTS_SUCCESS, payload: data });

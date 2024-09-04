@@ -1,5 +1,5 @@
 const { MongoClient } = require('mongodb');
-require('dotenv').config(); // Używaj dotenv do zarządzania zmiennymi środowiskowymi
+require('dotenv').config(); 
 
 const url = process.env.MONGODB_URL || 'mongodb://localhost:27017';
 const dbName = process.env.DB_NAME || 'sklep';
