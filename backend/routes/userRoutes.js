@@ -1,18 +1,16 @@
-const express = require('express');
-const { registerUser, authUser } = require('../controllers/userController');
+import express from 'express';
+import { registerUser, authUser } from '../controllers/userController.js';
+import authMiddleware from '../middleware/autchMiddleware.js'; // Przykładowy middleware
+
 const router = express.Router();
-const authMiddleware = require('../middleware/authMiddleware'); // Przykładowy middleware
 
 // Użycie middleware dla określonej trasy
-router.route('/register')
-    .post(registerUser);
+router.post('/register', registerUser);
 
-router.route('/login')
-    .post(authUser);
-
+router.post('/login', authUser);
 
 router.use('/protected', authMiddleware, (req, res) => {
     res.send('Protected route');
 });
 
-module.exports = router;
+export default router;

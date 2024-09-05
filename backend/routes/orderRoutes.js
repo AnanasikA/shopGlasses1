@@ -7,4 +7,4 @@ router.get('/', getCart);
 router.post('/', addToCart);
 router.delete('/:id', removeFromCart);
 
-export  default router;
+export default router;

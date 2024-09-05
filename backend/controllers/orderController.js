@@ -1,42 +1,27 @@
 const Order = require('../models/orderModel');
-const stripe = require('../config/stripe');
 
-exports.createOrder = async (req, res) => {
-  const { paymentMethodId } = req.body;
-  const cart = await Cart.findOne({ userId: req.user._id });
-
-  if (!cart || cart.items.length === 0) {
-    return res.status(400).json({ message: 'Cart is empty' });
+// Złóż zamówienie
+const placeOrder = async (req, res) => {
+  try {
+    const newOrder = new Order(req.body);
+    const savedOrder = await newOrder.save();
+    res.status(201).json(savedOrder);
+  } catch (error) {
+    res.status(500).json({ message: 'Błąd serwera' });
   }
-
-  const paymentIntent = await stripe.paymentIntents.create({
-    amount: cart.totalPrice * 100,
-    currency: 'usd',
-    payment_method: paymentMethodId,
-    confirm: true,
-  });
-
-  const newOrder = new Order({
-    userId: req.user._id,
-    items: cart.items,
-    totalPrice: cart.totalPrice,
-    paymentIntentId: paymentIntent.id,
-  });
-
-  await newOrder.save();
-
-  // Clear the cart
-  cart.items = [];
-  cart.totalPrice = 0;
-  await cart.save();
-
-  res.status(201).json(newOrder);
 };
 
-exports.getOrder = async (req, res) => {
-  const order = await Order.findById(req.params.id);
-  if (!order) {
-    return res.status(404).json({ message: 'Order not found' });
+// Pobierz wszystkie zamówienia
+const getOrders = async (req, res) => {
+  try {
+    const orders = await Order.find();
+    res.json(orders);
+  } catch (error) {
+    res.status(500).json({ message: 'Błąd serwera' });
   }
-  res.json(order);
+};
+
+module.exports = {
+  placeOrder,
+  getOrders,
 };
