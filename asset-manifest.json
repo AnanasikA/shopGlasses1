@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/My_glasses_shop/static/css/main.ff715b98.css",
+    "main.js": "/My_glasses_shop/static/js/main.42737375.js",
+    "index.html": "/My_glasses_shop/index.html",
+    "main.ff715b98.css.map": "/My_glasses_shop/static/css/main.ff715b98.css.map",
+    "main.42737375.js.map": "/My_glasses_shop/static/js/main.42737375.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ff715b98.css",
+    "static/js/main.42737375.js"
+  ]
+}
